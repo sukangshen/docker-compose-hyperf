@@ -1,0 +1,31 @@
+version: '2'
+services:
+  hyperf:
+    container_name: hyperf
+    build: .
+    stdin_open: true
+    tty: true
+    restart: always
+    ports:
+      - "9501:9501"
+      - "9502:9502"
+    volumes:
+     - ./www:/www/:rw
+  hyperf_redis:
+   image: redis:5.0.3-alpine
+   container_name: hyperf_redis
+   ports:
+     - "6379:6379"
+   volumes:
+     - ./redis/redis.conf:/etc/redis.conf:ro
+     - ./redis/data:/data/:rw
+   restart: always
+   entrypoint: ["redis-server", "/etc/redis.conf"]
+   environment:
+     TZ: "Asia/Shanghai"
+   networks:
+     - default
+
+
+networks:
+  default:
