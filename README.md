@@ -32,3 +32,14 @@ composer install
 
 php bin/hyperf.php start 
 ```
+
+##### 6.访问项目
+```
+浏览器访问：0.0.0.0:9501
+
+{
+    "method": "GET",
+    "message": "Hello Hyperf."
+}
+
+```
